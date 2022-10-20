@@ -10,11 +10,14 @@ function setCardType(type) {
   const colors = {
     visa: ["#436D99", "2d57f2"],
     mastercard: ["#df6f29", "c69347"],
+    elo: ["#D1C023", "D12323"],
+    ame: ["#66A7E2", "66A7E2"],
     default: ["black", "gray"],
   }
 
   ccBgColor01.setAttribute("fill", colors[type][0])
   ccBgColor02.setAttribute("fill", colors[type][1])
+  
   cclogo.setAttribute("src", `cc-${type}.svg`)
 }
 
@@ -49,6 +52,16 @@ const expirationDateMasked = IMask(expirationDate, expirationDatePattern)
 const cardNumber = document.querySelector("#card-number")
 const cardNumberPattern = {
   mask: [
+    {
+      mask: "0000 0000 0000 0000",
+      regex: /^3\d{0,15}/,
+      cardtype: "ame",
+    },
+    {
+      mask: "0000 0000 0000 0000",
+      regex: /^6\d{0,15}/,
+      cardtype: "elo",
+    },
     {
       mask: "0000 0000 0000 0000",
       regex: /^4\d{0,15}/,
